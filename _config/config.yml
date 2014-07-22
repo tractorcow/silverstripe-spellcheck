@@ -1,0 +1,20 @@
+---
+Name: spellcheckroutes
+---
+Director:
+  rules:
+    'spellcheck': 'SpellController'
+---
+Name: spellcheck
+---
+# Set the default provider to HunSpell
+Injector:
+  SpellProvider: HunSpellProvider
+---
+Name: spellcheckprocessors
+---
+Injector:
+  RequestProcessor:
+    properties:
+      filters:
+        - '%$SpellRequestFilter'
