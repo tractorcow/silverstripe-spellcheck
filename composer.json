@@ -1,0 +1,17 @@
+{
+	"name": "silverstripe/spellcheck",
+	"description": "Improves spellcheck support for SilverStripe CMS, including an implementation for HunSpell.",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "spellcheck", "hunspell"],
+	"license": "BSD-3-Clause",
+	"authors": [
+		{
+			"name": "Damian Mooyman",
+			"email": "damian@silverstripe.com"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {
+		"silverstripe/framework": "~3.1"
+	}
+}

@@ -73,7 +73,7 @@ class HunSpellProvider implements SpellProvider {
 		// Parse results
 		$pattern = Config::inst()->get(__CLASS__, 'pattern');
 		$results = array();
-		foreach(preg_split('~\R~u', $stdout) as $line) {
+		foreach(preg_split('/$\R?^/m', $stdout) as $line) {
 			if(preg_match($pattern, $line, $matches)) {
 				$results[$matches['original']] = explode(', ', $matches['misses']);
 			}

@@ -5,7 +5,7 @@ Director:
   rules:
     'spellcheck': 'SpellController'
 ---
-Name: spellcheck
+Name: spellcheckprovider
 ---
 # Set the default provider to HunSpell
 Injector:
