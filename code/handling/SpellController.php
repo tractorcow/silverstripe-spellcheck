@@ -119,15 +119,19 @@ class SpellController extends Controller {
 		}
 
 		// Perform action
-		$params = $data['params'];
-		$method = $data['method'];
-		switch($method) {
-			case 'checkWords':
-				return $this->success($provider->checkWords($params[0], $params[1]));
-			case 'getSuggestions':
-				return $this->success($provider->getSuggestions($params[0], $params[1]));
-			default:
-				return $this->error("Unsupported method {$method}", 400);
+		try {
+			$params = $data['params'];
+			$method = $data['method'];
+			switch($method) {
+				case 'checkWords':
+					return $this->success($provider->checkWords($params[0], $params[1]));
+				case 'getSuggestions':
+					return $this->success($provider->getSuggestions($params[0], $params[1]));
+				default:
+					return $this->error("Unsupported method {$method}", 400);
+			}
+		} catch(SpellException $ex) {
+			return $this->error($ex->getMessage(), $ex->getCode());
 		}
 	}
 

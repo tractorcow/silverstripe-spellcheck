@@ -11,9 +11,6 @@ class SpellRequestFilter implements RequestFilter {
 	private static $editor = 'cms';
 
 	public function preRequest(\SS_HTTPRequest $request, \Session $session, \DataModel $model) {
-		// Spellling settings
-		$editor = Config::inst()->get(__CLASS__, 'editor');
-
 		// Check languages to set
 		$languages = array();
 		foreach(SpellController::config()->locales as $locale) {
@@ -21,10 +18,11 @@ class SpellRequestFilter implements RequestFilter {
 		}
 
 		// Set settings
-		$editor = 'cms';
+		$editor = Config::inst()->get(__CLASS__, 'editor');
 		HtmlEditorConfig::get($editor)->enablePlugins('spellchecker');
 		HtmlEditorConfig::get($editor)->addButtonsToLine(2, 'spellchecker');
 		HtmlEditorConfig::get($editor)->setOption('spellchecker_rpc_url', 'spellcheck/');
+		HtmlEditorConfig::get($editor)->setOption('browser_spellcheck', false);
 		HtmlEditorConfig::get($editor)->setOption('spellchecker_languages', '+'.implode(', ', $languages));
 		return true;
 	}
