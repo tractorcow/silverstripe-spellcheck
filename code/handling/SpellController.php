@@ -94,7 +94,7 @@ class SpellController extends Controller {
 	protected function result($id, $result, $error = null, $code = 200) {
 		$this->response->setStatusCode($code);
 		$this->response->setBody(json_encode(array(
-			'id' => $id,
+			'id' => $id ? preg_replace('/\W/', '', $id) : null, // Cleanup id
 			'result' => $result,
 			'error' => $error
 		)));
