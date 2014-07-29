@@ -31,7 +31,7 @@ class HunSpellProviderTest extends SapphireTest {
 		$provider = new HunSpellProvider();
 		$result = $provider->getSuggestions('en_US', 'collor');
 		$this->assertArrayContains(
-			array('color', 'collar', 'coll or', 'coll-or', 'collator', 'corolla', 'coll', 'Colo'),
+			array('color', 'collar', 'coll or', 'coll-or', 'collator'),
 			$result
 		);
 		$result = $provider->getSuggestions('en_US', 'basketball');
