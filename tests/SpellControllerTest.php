@@ -140,11 +140,12 @@ class SpellControllerTest extends FunctionalTest {
 		$response = $this->post('spellcheck', array('ajax' => 1, 'json_data' => json_encode($dataCheckWords)));
 		$this->assertEquals(200,  $response->getStatusCode());
 		$jsonBody = json_decode($response->getBody());
+		$this->assertEquals('c0', $jsonBody->id);
 		$this->assertEquals(array("collor", "color", "onee"), $jsonBody->result);
 
 		// Test getSuggestions acceptance
 		$dataGetSuggestions = array(
-			'id' => 'c1',
+			'id' => '//c1//', // Should be reduced to only alphanumeric characters
 			'method' => 'getSuggestions',
 			'params' => array(
 				'en_NZ',
@@ -155,6 +156,7 @@ class SpellControllerTest extends FunctionalTest {
 		$response = $this->post('spellcheck', array('ajax' => 1, 'json_data' => json_encode($dataGetSuggestions)));
 		$this->assertEquals(200,  $response->getStatusCode());
 		$jsonBody = json_decode($response->getBody());
+		$this->assertEquals('c1', $jsonBody->id);
 		$this->assertEquals(array('collar', 'colour'), $jsonBody->result);
 
 		// Test non-ajax rejection
